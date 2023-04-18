@@ -9,7 +9,8 @@ import java.util.UUID;
 public abstract class ParentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO,
+            generator = "UUID")
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
