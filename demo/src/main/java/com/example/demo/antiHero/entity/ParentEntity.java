@@ -9,7 +9,7 @@ import java.util.UUID;
 public abstract class ParentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//already default, optional
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
