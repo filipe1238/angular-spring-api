@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash("AntiHero")
+//@RedisHash("AntiHero")
 public class AntiHeroEntity extends ParentEntity {
     @NotNull(message = "First Name is required")
     private String firstName;
