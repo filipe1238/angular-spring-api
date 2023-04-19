@@ -2,10 +2,7 @@ package com.example.demo.produto.entity;
 
 import com.example.demo.carrinho.entity.Carrinho;
 import com.example.demo.utils.ParentEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +23,10 @@ public class Produto extends ParentEntity {
     private BigDecimal vrBruto;
     private BigDecimal vrDesc;
     private BigDecimal vrLiq;
+    @ManyToOne(cascade
+            = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    private Carrinho carrinhoAtual;
     private String createdAt =
             new SimpleDateFormat("dd-MM-yyyy HH:mm:ss z")
                     .format(new Date());
