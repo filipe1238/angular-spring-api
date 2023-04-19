@@ -1,5 +1,6 @@
 package com.example.demo.produto.dto;
 
+import com.example.demo.carrinho.entity.Carrinho;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,4 +17,5 @@ public class ProdutoDto {
     private BigDecimal vrBruto;
     private BigDecimal vrDesc;
     private BigDecimal vrLiq;
+    private Carrinho carrinhoAtual;
 }

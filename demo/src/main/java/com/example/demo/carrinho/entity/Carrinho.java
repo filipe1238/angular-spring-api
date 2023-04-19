@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "carrinho")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,44 +24,40 @@ import java.util.stream.Stream;
 public class Carrinho extends ParentEntity {
 
     //relacao unidirecional sem cascade de delete
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.DETACH,
-                    CascadeType.MERGE,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH})
-    private List<Produto> listaProdutos;
     private String descricao;
+    @OneToMany(fetch = FetchType.LAZY,
+             mappedBy = "carrinhoAtual")
+    private List<Produto> produtos;
     private String createdAt =
             new SimpleDateFormat("dd-MM-yyyy HH:mm:ss z")
                     .format(new Date());
 
     public BigDecimal getVrBrutoTotal() {
-        if (listaProdutos.isEmpty() || listaProdutos == null) {
+        if (produtos.isEmpty() || produtos == null) {
             return BigDecimal.ZERO;
         }
         BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.listaProdutos) {
+        for (Produto prod : this.produtos) {
             total = total.add(prod.getVrBruto());
         }
         return total;
     }
     public BigDecimal getVrDescTotal() {
-        if (listaProdutos.isEmpty() || listaProdutos == null) {
+        if (produtos.isEmpty() || produtos == null) {
             return BigDecimal.ZERO;
         }
         BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.listaProdutos) {
+        for (Produto prod : this.produtos) {
             total = total.add(prod.getVrDesc());
         }
         return total;
     }
     public BigDecimal getVrLiqTotal() {
-        if (listaProdutos.isEmpty() || listaProdutos == null) {
+        if (produtos.isEmpty() || produtos == null) {
             return BigDecimal.ZERO;
         }
         BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.listaProdutos) {
+        for (Produto prod : this.produtos) {
             total = total.add(prod.getVrLiq());
         }
         return total;
