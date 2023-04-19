@@ -14,6 +14,6 @@ public class ProdutoDto {
     @NotNull(message = "First Name is required")
     private String descricao;
     private BigDecimal vrBruto;
-    private BigDecimal vrDec;
+    private BigDecimal vrDesc;
     private BigDecimal vrLiq;
 }
