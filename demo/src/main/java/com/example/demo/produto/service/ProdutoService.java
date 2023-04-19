@@ -1,11 +1,13 @@
 package com.example.demo.produto.service;
 
+import com.example.demo.carrinho.entity.Carrinho;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.produto.entity.Produto;
 import com.example.demo.produto.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,5 +47,8 @@ public class ProdutoService {
                                Produto produto) {
         findOrThrow(id);
         repo.save(produto);
+    }
+    public List<Produto> findAllByCarrinhoAtualIn(Iterable<Carrinho> carr){
+        return this.repo.findAllByCarrinhoAtualIn(carr);
     }
 }

@@ -12,5 +12,5 @@ import java.util.UUID;
 public class CarrinhoDto {
     private UUID id;
     private List<Produto> produtos;
-    private String desc;
+    private String descricao;
 }

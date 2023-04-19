@@ -2,6 +2,8 @@ package com.example.demo.carrinho.entity;
 
 import com.example.demo.produto.entity.Produto;
 import com.example.demo.utils.ParentEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,41 +27,48 @@ public class Carrinho extends ParentEntity {
 
     //relacao unidirecional sem cascade de delete
     private String descricao;
-    @OneToMany(fetch = FetchType.LAZY,
-             mappedBy = "carrinhoAtual")
+    @JsonIgnoreProperties("carrinhoAtual")
+    @ManyToMany(cascade
+            = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "carrinho_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
     private String createdAt =
             new SimpleDateFormat("dd-MM-yyyy HH:mm:ss z")
                     .format(new Date());
 
-    public BigDecimal getVrBrutoTotal() {
-        if (produtos.isEmpty() || produtos == null) {
-            return BigDecimal.ZERO;
-        }
-        BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.produtos) {
-            total = total.add(prod.getVrBruto());
-        }
-        return total;
-    }
-    public BigDecimal getVrDescTotal() {
-        if (produtos.isEmpty() || produtos == null) {
-            return BigDecimal.ZERO;
-        }
-        BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.produtos) {
-            total = total.add(prod.getVrDesc());
-        }
-        return total;
-    }
-    public BigDecimal getVrLiqTotal() {
-        if (produtos.isEmpty() || produtos == null) {
-            return BigDecimal.ZERO;
-        }
-        BigDecimal total = BigDecimal.ZERO;
-        for (Produto prod : this.produtos) {
-            total = total.add(prod.getVrLiq());
-        }
-        return total;
-    }
+//    public BigDecimal getVrBrutoTotal() {
+//        if (produtos.isEmpty() || produtos == null) {
+//            return BigDecimal.ZERO;
+//        }
+//        BigDecimal total = BigDecimal.ZERO;
+//        for (Produto prod : this.produtos) {
+//            total = total.add(prod.getVrBruto());
+//        }
+//        return total;
+//    }
+//    public BigDecimal getVrDescTotal() {
+//        if (produtos.isEmpty() || produtos == null) {
+//            return BigDecimal.ZERO;
+//        }
+//        BigDecimal total = BigDecimal.ZERO;
+//        for (Produto prod : this.produtos) {
+//            total = total.add(prod.getVrDesc());
+//        }
+//        return total;
+//    }
+//    public BigDecimal getVrLiqTotal() {
+//        if (produtos.isEmpty() || produtos == null) {
+//            return BigDecimal.ZERO;
+//        }
+//        BigDecimal total = BigDecimal.ZERO;
+//        for (Produto prod : this.produtos) {
+//            total = total.add(prod.getVrLiq());
+//        }
+//        return total;
+//    }
 }

@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(allowedHeaders = "Content-type")
-@RequestMapping("api/v1/prods")
+@RequestMapping("api/v1/")
 public class ProdutoController {
     private final ProdutoService service;
     private final ModelMapper mapper;
@@ -32,19 +32,21 @@ public class ProdutoController {
         return mapper.map(dto, Produto.class);
     }
 
-    @GetMapping("/{id}")
-    public ProdutoDto getProdById(@PathVariable("id") UUID id) {
-        return convertToDto(service.findProdById(id));
+    @GetMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
+    public ProdutoDto getProdById(@PathVariable("prodId") UUID prodId,
+                                  @PathVariable("carrinhoId") UUID carrinhoId) {
+
+        return convertToDto(service.findProdById(prodId));
     }
 
-    @PostMapping
+    @PostMapping("/carrinhos/{carrinhoId}/prod")
     public ProdutoDto postProd(@Valid @RequestBody ProdutoDto produtoDto) {
         var entity = convertToEntity(produtoDto);
         var prod = service.addProd(entity);
         return convertToDto(prod);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
     public void putProd(
             @PathVariable("id") UUID id,
             @Valid @RequestBody ProdutoDto produtoDto
@@ -58,13 +60,14 @@ public class ProdutoController {
         service.updateProd(id, prod);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProdById(@PathVariable("id") UUID id) {
-        service.removeProdById(id);
+    @DeleteMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
+    public void deleteProdById(@PathVariable("prodId") UUID prodId,
+                               @PathVariable("carrinhoId") UUID carrinhoId) {
+        service.removeProdById(prodId);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping
+    @GetMapping("/prod")
     public List<ProdutoDto> getProd(Pageable pageable) {
         int toSkip = pageable.getPageSize() *
                 pageable.getPageNumber();
