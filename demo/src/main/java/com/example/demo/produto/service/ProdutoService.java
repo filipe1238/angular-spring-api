@@ -43,9 +43,9 @@ public class ProdutoService {
         return repo.save(produto);
     }
 
-    public void updateProd(UUID id,
+    public void updateProd(
                                Produto produto) {
-        findOrThrow(id);
+//        findOrThrow(id);
         repo.save(produto);
     }
     public List<Produto> findAllByCarrinhoAtualIn(Iterable<Carrinho> carr){

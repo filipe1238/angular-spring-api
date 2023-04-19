@@ -8,6 +8,8 @@ import { TasksComponent } from './pages/tasks/tasks.component';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 
 import { NewCarrinhoComponent } from './pages/new-carrinho/new-carrinho.component';
+import { NewProdutoComponent } from './pages/new-produto/new-produto.component';
+import { SearchProdutoComponent } from './pages/search-produto/search-produto.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
   {
     path: 'new-carrinho',
     component: NewCarrinhoComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'new-produto',
+    component: NewProdutoComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'search-produto',
+    component: SearchProdutoComponent,
     canActivate: [ AuthGuardService ]
   },
   {

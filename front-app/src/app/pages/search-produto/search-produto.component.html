@@ -1,0 +1,27 @@
+<div><h2 class="content-block">Produtos</h2></div>
+<div class="dx-fieldset">
+  <dx-button
+    width="25%"
+    id="button"
+    text="Novo"
+    type="normal"
+    (onClick)="redirectCreate()"
+    [useSubmitBehavior]="true"
+  >
+  </dx-button>
+</div>
+<dx-data-grid
+  class="dx-card wide-card"
+  [dataSource]="dataSource"
+>
+  <dxo-editing
+    mode="form"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+  >
+  </dxo-editing>
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+  <!--  <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+</dx-data-grid>

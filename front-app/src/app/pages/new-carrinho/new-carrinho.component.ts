@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Carrinho } from './carrinho';
+import { Carrinho } from '../../interfaces/carrinho';
 
 @Component({
   selector: 'app-new-carrinho',

@@ -25,7 +25,13 @@ export const navigation = [
       {
       text: 'Carrinho',
       path: '/new-carrinho'
-    },]
+    },
+    {
+      text: 'Produto',
+      path: '/search-produto'
+    },
+
+  ]
   }
 
 ];

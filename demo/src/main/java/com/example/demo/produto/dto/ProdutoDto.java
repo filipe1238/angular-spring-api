@@ -12,7 +12,6 @@ import java.util.UUID;
 @Setter
 public class ProdutoDto {
     private UUID id;
-    @NotNull(message = "First Name is required")
     private String descricao;
     private BigDecimal vrBruto;
     private BigDecimal vrDesc;

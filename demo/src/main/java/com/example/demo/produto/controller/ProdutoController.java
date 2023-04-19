@@ -1,5 +1,7 @@
 package com.example.demo.produto.controller;
 
+import com.example.demo.carrinho.entity.Carrinho;
+import com.example.demo.carrinho.service.CarrinhoService;
 import com.example.demo.produto.dto.ProdutoDto;
 import com.example.demo.produto.entity.Produto;
 import com.example.demo.produto.service.ProdutoService;
@@ -22,6 +24,7 @@ import java.util.stream.StreamSupport;
 @RequestMapping("api/v1/")
 public class ProdutoController {
     private final ProdutoService service;
+    private final CarrinhoService serviceCarrinho;
     private final ModelMapper mapper;
 
     private ProdutoDto convertToDto(Produto entity) {
@@ -32,22 +35,42 @@ public class ProdutoController {
         return mapper.map(dto, Produto.class);
     }
 
-    @GetMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
-    public ProdutoDto getProdById(@PathVariable("prodId") UUID prodId,
-                                  @PathVariable("carrinhoId") UUID carrinhoId) {
+    @GetMapping("/carrinhos/{carrinhoId}/prods/{prodId}")
+    public ProdutoDto getProdByIdInCarrinho(@PathVariable("prodId") UUID prodId,
+                                            @PathVariable("carrinhoId") UUID carrinhoId) {
+        Carrinho carrinhoFiltrado = serviceCarrinho.findProdById(carrinhoId);
+        Produto produtoAchado = null;
+        for (Produto prod : carrinhoFiltrado.getProdutos()) {
+            if(prod.getId().equals(prodId)) {
+                produtoAchado = prod;
+            }
+        }
+        return convertToDto(produtoAchado);
+    }
+
+    @GetMapping("/prods/{prodId}")
+    public ProdutoDto getProdById(@PathVariable("prodId") UUID prodId) {
 
         return convertToDto(service.findProdById(prodId));
     }
 
-    @PostMapping("/carrinhos/{carrinhoId}/prod")
+
+    @PostMapping("/carrinhos/{carrinhoId}/prods")
+    public ProdutoDto postProdInCarrinho(@Valid @RequestBody ProdutoDto produtoDto) {
+        var entity = convertToEntity(produtoDto);
+        var prod = service.addProd(entity);
+        return convertToDto(prod);
+    }
+
+    @PostMapping("/prods")
     public ProdutoDto postProd(@Valid @RequestBody ProdutoDto produtoDto) {
         var entity = convertToEntity(produtoDto);
         var prod = service.addProd(entity);
         return convertToDto(prod);
     }
 
-    @PutMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
-    public void putProd(
+    @PutMapping("/carrinhos/{carrinhoId}/prods/{prodId}")
+    public void putProdInCarrinho(
             @PathVariable("id") UUID id,
             @Valid @RequestBody ProdutoDto produtoDto
     ) {
@@ -57,7 +80,32 @@ public class ProdutoController {
                 "id does not match."
         );
         var prod = convertToEntity(produtoDto);
-        service.updateProd(id, prod);
+        service.updateProd( prod);
+    }
+  @PutMapping("/prods/update")
+    public void putProd(
+            @Valid @RequestBody ProdutoDto produtoDto
+    ) {
+//        if (!id.equals(produtoDto.getId())) throw new
+//                ResponseStatusException(
+//                HttpStatus.BAD_REQUEST,
+//                "id does not match."
+//        );
+        var prod = convertToEntity(produtoDto);
+        service.updateProd(prod);
+    }
+    @PutMapping("/prods/{prodId}")
+    public void putProdtest(
+            @PathVariable("prodId") UUID id,
+            @Valid @RequestBody ProdutoDto produtoDto
+    ) {
+        if (!id.equals(produtoDto.getId())) throw new
+                ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "id does not match."
+        );
+        var prod = convertToEntity(produtoDto);
+        service.updateProd(prod);
     }
 
     @DeleteMapping("/carrinhos/{carrinhoId}/prod/{prodId}")
@@ -67,7 +115,7 @@ public class ProdutoController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/prod")
+    @GetMapping("/prods")
     public List<ProdutoDto> getProd(Pageable pageable) {
         int toSkip = pageable.getPageSize() *
                 pageable.getPageNumber();
