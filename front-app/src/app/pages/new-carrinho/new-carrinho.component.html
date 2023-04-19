@@ -1,0 +1,61 @@
+<!-- <div class="form">
+  <div class="dx-fieldset">
+    <div class="dx-field"></div>
+    <div class="dx-field">
+      <dx-button
+        stylingMode="outlined"
+        text="Salvar"
+        type="success"
+        [width]="120"
+        (onClick)="click()"
+      >
+      </dx-button>
+    </div>
+  </div>
+</div> -->
+
+<form (submit)="onFormSubmit($event)">
+  <div class="dx-fieldset">
+    <div class="dx-fieldset-header">Cadastro de uma Nova lista de Produtos</div>
+    <div class="dx-field">
+      <div class="dx-field-label">Descrição</div>
+      <div class="dx-field-value">
+        <dx-text-box
+          [(value)]="carrinho.descricao"
+          placeholder="Descrição de Carrinho"
+        >
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Descrição é Obrigatória"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Produtos</div>
+      Adicionar lista depois
+    </div>
+  </div>
+  <div class="dx-fieldset">
+    <dx-button
+      width="50%"
+      id="button"
+      text="Cancelar"
+      type="normal"
+      (onClick)="click()"
+      [useSubmitBehavior]="true"
+    >
+    </dx-button>
+    <dx-button
+      width="50%"
+      id="button"
+      text="Salvar"
+      type="success"
+      (onClick)="click()"
+      [useSubmitBehavior]="true"
+    >
+    </dx-button>
+  </div>
+</form>
