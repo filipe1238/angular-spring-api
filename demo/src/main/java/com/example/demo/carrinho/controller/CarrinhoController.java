@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(allowedHeaders = "Content-type")
-@RequestMapping("api/v1/carrinho")
+@RequestMapping("api/v1/carrinhos")
 public class CarrinhoController {
     private final CarrinhoService service;
     private final ModelMapper mapper;
