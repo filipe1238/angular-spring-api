@@ -11,6 +11,6 @@ import java.util.UUID;
 @Setter
 public class CarrinhoDto {
     private UUID id;
-    private List<Produto> listaProdutos;
-    private String descricao;
+    private List<Produto> produtos;
+    private String desc;
 }
