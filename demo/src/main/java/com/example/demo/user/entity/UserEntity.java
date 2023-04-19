@@ -1,6 +1,6 @@
 package com.example.demo.user.entity;
 
-import com.example.demo.antiHero.entity.ParentEntity;
+import com.example.demo.utils.ParentEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

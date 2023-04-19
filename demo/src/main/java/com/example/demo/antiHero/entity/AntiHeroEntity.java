@@ -1,12 +1,12 @@
 package com.example.demo.antiHero.entity;
 
+import com.example.demo.utils.ParentEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

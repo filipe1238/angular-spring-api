@@ -1,4 +1,4 @@
-package com.example.demo.antiHero.entity;
+package com.example.demo.utils;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
