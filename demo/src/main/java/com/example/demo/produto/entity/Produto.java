@@ -32,7 +32,7 @@ public class Produto extends ParentEntity {
             = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
-            name = "course_student",
+            name = "carrinho_prod",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
     private List<Carrinho> carrinhoAtual;

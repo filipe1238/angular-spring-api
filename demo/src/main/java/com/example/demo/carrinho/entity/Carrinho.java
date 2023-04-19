@@ -33,7 +33,7 @@ public class Carrinho extends ParentEntity {
             CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     @JoinTable(
-            name = "course_student",
+            name = "carrinho_prod",
             joinColumns = @JoinColumn(name = "carrinho_id"),
             inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
