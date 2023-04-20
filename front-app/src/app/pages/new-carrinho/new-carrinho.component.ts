@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CarrinhoService } from './carrinho.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProdutoService } from '../new-produto/produto.service';
-import { Produto } from 'src/app/interfaces/Produto';
+import { Produto } from 'src/app/interfaces/produto';
 import DataGrid from 'devextreme/ui/data_grid';
 import { DxDataGridComponent, DxTagBoxComponent } from 'devextreme-angular';
 
@@ -48,10 +48,12 @@ export class NewCarrinhoComponent implements OnInit {
   };
   onFormSubmit = (event: Event) => {
     event.preventDefault();
-    console.log(this.prodrodutosSelec.selectedItems);
-    /*     this.saveProduto(); */
+    console.log('itens selected' + this.prodrodutosSelec.selectedItems);
+    this.carrinho.produtos = [ ...this.prodrodutosSelec.selectedItems] ;
+    console.log(' carrinho' + this.carrinho);
+    this.saveCarrinho();
   };
-  public saveProduto(): void {
+  public saveCarrinho(): void {
     this.service.addCarrinho(this.carrinho).subscribe(
       (response: Carrinho) => {
         console.log(response);

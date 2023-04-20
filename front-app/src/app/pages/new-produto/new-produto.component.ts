@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Produto } from 'src/app/interfaces/Produto';
+import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from './produto.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';

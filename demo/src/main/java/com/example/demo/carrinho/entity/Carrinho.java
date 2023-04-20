@@ -25,12 +25,12 @@ import java.util.stream.Stream;
 //@RedisHash("Produto")
 public class Carrinho extends ParentEntity {
 
-    //relacao unidirecional sem cascade de delete
+    //relacao unidirecional sem cascade de delete e de persist
     private String descricao;
     @JsonIgnoreProperties("carrinhoAtual")
     @ManyToMany(cascade
             = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH},
+             CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     @JoinTable(
             name = "carrinho_prod",
