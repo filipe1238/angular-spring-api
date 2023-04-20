@@ -1,6 +1,7 @@
 package com.example.demo.carrinho.dto;
 
 import com.example.demo.produto.entity.Produto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarrinhoDto {
     private UUID id;
     private List<Produto> produtos;

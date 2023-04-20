@@ -24,7 +24,7 @@ export const navigation = [
     items: [
       {
       text: 'Carrinho',
-      path: '/new-carrinho'
+      path: '/search-carrinho'
     },
     {
       text: 'Produto',

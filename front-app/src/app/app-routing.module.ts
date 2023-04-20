@@ -10,6 +10,7 @@ import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 import { NewCarrinhoComponent } from './pages/new-carrinho/new-carrinho.component';
 import { NewProdutoComponent } from './pages/new-produto/new-produto.component';
 import { SearchProdutoComponent } from './pages/search-produto/search-produto.component';
+import { SearchCarrinhoComponent } from './pages/search-carrinho/search-carrinho.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'new-carrinho',
     component: NewCarrinhoComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'search-carrinho',
+    component: SearchCarrinhoComponent,
     canActivate: [ AuthGuardService ]
   },
   {

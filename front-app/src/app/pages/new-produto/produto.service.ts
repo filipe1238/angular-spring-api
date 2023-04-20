@@ -24,10 +24,10 @@ export class ProdutoService {
 
   public updateProduto(id: any, prod: Produto): Observable<Produto> {
     prod.id=id;
-    return this.http.put<Produto>(`${this.apiServerUrl}prods/update`, prod);
+    return this.http.put<Produto>(`${this.apiServerUrl}prods/${id}`, prod);
   }
-/*
-  public deleteEmployee(employeeId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}employee/delete/${employeeId}`);
-  } */
+
+  public deleteProduto(id: any): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}prods/${id}`);
+  }
 }

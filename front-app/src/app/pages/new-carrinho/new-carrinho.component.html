@@ -19,7 +19,19 @@
     </div>
     <div class="dx-field">
       <div class="dx-field-label">Produtos</div>
-      Adicionar lista depois
+      <div class="dx-field-value">
+        <dx-tag-box #targetDataGrid
+          valueExpr="id"
+          [searchEnabled]="true"
+          [dataSource]="produtos"
+          label="Selecione"
+          (onSelectionChanged)="onValueChanged($event)"
+          displayExpr="descricao"
+          [showSelectionControls]="true"
+          applyValueMode="useButtons"
+        >
+        </dx-tag-box>
+      </div>
     </div>
   </div>
   <div class="dx-fieldset">

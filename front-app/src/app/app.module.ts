@@ -11,13 +11,15 @@ import { NewCarrinhoComponent } from './pages/new-carrinho/new-carrinho.componen
 import { DevExtremeModule } from 'devextreme-angular';
 import { NewProdutoComponent } from './pages/new-produto/new-produto.component';
 import { SearchProdutoComponent } from './pages/search-produto/search-produto.component';
+import { SearchCarrinhoComponent } from './pages/search-carrinho/search-carrinho.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewCarrinhoComponent,
     NewProdutoComponent,
-    SearchProdutoComponent
+    SearchProdutoComponent,
+    SearchCarrinhoComponent
   ],
   imports: [
     BrowserModule,
