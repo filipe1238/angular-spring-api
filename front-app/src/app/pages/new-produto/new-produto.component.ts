@@ -43,8 +43,8 @@ export class NewProdutoComponent implements OnInit {
     this.produto.vrLiq = this.produto.vrBruto - this.produto.vrDesc;
   };
 
-  click = () => {
-    console.log(this.produto.descricao);
+  voltar = () => {
+    this.router.navigateByUrl('/search-produto');
   };
   onFormSubmit = (event: Event) => {
     event.preventDefault();

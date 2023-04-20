@@ -13,6 +13,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarrinhoDto {
     private UUID id;
-    private List<Produto> produtos;
     private String descricao;
+    private List<Produto> produtos;
+
 }

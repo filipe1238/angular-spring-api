@@ -36,20 +36,25 @@
   </div>
   <div class="dx-fieldset">
     <dx-button
-      width="50%"
       id="button"
-      text="Cancelar"
-      type="normal"
-      (onClick)="click()"
-      [useSubmitBehavior]="true"
+      text="Voltar"
+      type="alert"
+      (onClick)="voltar()"
+      [useSubmitBehavior]="false"
     >
     </dx-button>
+    <!-- <dx-button
+      id="button"
+      text="Apagar Tudo"
+      type="normal"
+      (onClick)="resetCarrinho()"
+      [useSubmitBehavior]="false"
+    >
+    </dx-button> -->
     <dx-button
-      width="50%"
       id="button"
       text="Salvar"
       type="success"
-      (onClick)="click()"
       [useSubmitBehavior]="true"
     >
     </dx-button>

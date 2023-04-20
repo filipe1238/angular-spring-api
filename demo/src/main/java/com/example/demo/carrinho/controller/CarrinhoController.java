@@ -3,9 +3,13 @@ package com.example.demo.carrinho.controller;
 import com.example.demo.carrinho.dto.CarrinhoDto;
 import com.example.demo.carrinho.entity.Carrinho;
 import com.example.demo.carrinho.service.CarrinhoService;
+import com.example.demo.produto.entity.Produto;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +27,8 @@ import java.util.stream.StreamSupport;
 public class CarrinhoController {
     private final CarrinhoService service;
     private final ModelMapper mapper;
-
+    @Autowired
+    private ObjectMapper objectMapper;
     private CarrinhoDto convertToDto(Carrinho entity) {
         return mapper.map(entity, CarrinhoDto.class);
     }
@@ -47,15 +52,17 @@ public class CarrinhoController {
     @PutMapping("/{id}")
     public void putProd(
             @PathVariable("id") UUID id,
-            @Valid @RequestBody CarrinhoDto produtoDto
-    ) {
-        if (!id.equals(produtoDto.getId())) throw new
+            @Valid @RequestBody CarrinhoDto carrinhoDto
+    ) throws JsonMappingException {
+        if (!id.equals(carrinhoDto.getId())) throw new
                 ResponseStatusException(
                 HttpStatus.BAD_REQUEST,
                 "id does not match."
         );
-        var prod = convertToEntity(produtoDto);
-        service.updateProd(id, prod);
+        Carrinho carrPersist = service.findProdById(id);
+        Carrinho produto = objectMapper.updateValue(carrPersist, carrinhoDto);
+//        var prod = convertToEntity(produtoDto);
+        service.updateProd(id, produto);
     }
 
     @DeleteMapping("/{id}")

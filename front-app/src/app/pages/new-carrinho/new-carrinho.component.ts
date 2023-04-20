@@ -24,6 +24,7 @@ export class NewCarrinhoComponent implements OnInit {
   public carrinho: Carrinho = {
     descricao: '',
   };
+
   produtos: Produto[] = [];
 
   ngOnInit(): void {
@@ -33,18 +34,15 @@ export class NewCarrinhoComponent implements OnInit {
   }
 
   initCarrinho = () => {
+    this.prodrodutosSelec = []
     this.carrinho = {
       descricao: '',
+      produtos:[]
     };
   };
 
-  cancelar = () => {
-    this.carrinho = {
-      descricao: '',
-    };
-  };
-  click = () => {
-    console.log(this.carrinho.descricao);
+  resetCarrinho = () => {
+    this.initCarrinho();
   };
   onFormSubmit = (event: Event) => {
     event.preventDefault();
@@ -70,4 +68,14 @@ export class NewCarrinhoComponent implements OnInit {
     /* const value = e.component.option('value');
     const selectedItems = e.component.option('selectedItems'); */
   };
+
+  cancelar = () => {
+    this.carrinho = {
+      descricao: '',
+    };
+  };
+  voltar = () =>{
+    this.router.navigateByUrl('/search-carrinho');
+  }
+
 }

@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class ProdutoController {
         return mapper.map(dto, Produto.class);
     }
 
-    //Getter Mapps
+    //Get Mapps
     @GetMapping("/carrinhos/{carrinhoId}/prods/{prodId}")
     public ProdutoDto getProdByIdInCarrinho(@PathVariable("prodId") UUID prodId,
                                             @PathVariable("carrinhoId") UUID carrinhoId) {
@@ -52,6 +53,15 @@ public class ProdutoController {
             }
         }
         return convertToDto(produtoAchado);
+    }
+    @GetMapping("/carrinhos/{carrinhoId}/prods")
+    public List<ProdutoDto> getProdByIdInCarrinho(@PathVariable("carrinhoId") UUID carrinhoId) {
+        Carrinho carrinhoFiltrado = serviceCarrinho.findProdById(carrinhoId);
+        List<ProdutoDto> produtosAchadosDto = new ArrayList<>();
+        for(Produto prod : carrinhoFiltrado.getProdutos()){
+            produtosAchadosDto.add(this.convertToDto(prod));
+        }
+        return produtosAchadosDto;
     }
 
     @GetMapping("/prods/{prodId}")

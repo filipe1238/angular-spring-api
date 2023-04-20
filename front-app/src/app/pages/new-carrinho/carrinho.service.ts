@@ -22,12 +22,12 @@ export class CarrinhoService {
     return this.http.post<Carrinho>(`${this.apiServerUrl}carrinhos`, carrinho);
   }
 
-  public updateCarrinho(id: any, prod: Carrinho): Observable<Carrinho> {
-    prod.id=id;
-    return this.http.put<Carrinho>(`${this.apiServerUrl}prods/${id}`, prod);
+  public updateCarrinho(id: any, carrinho: Carrinho): Observable<Carrinho> {
+    carrinho.id=id;
+    return this.http.put<Carrinho>(`${this.apiServerUrl}carrinhos/${id}`, carrinho);
   }
 
   public deleteCarrinho(id: any): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}prods/${id}`);
+    return this.http.delete<void>(`${this.apiServerUrl}carrinhos/${id}`);
   }
 }
