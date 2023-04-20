@@ -45,7 +45,7 @@ public class ProdutoController {
     @GetMapping("/carrinhos/{carrinhoId}/prods/{prodId}")
     public ProdutoDto getProdByIdInCarrinho(@PathVariable("prodId") UUID prodId,
                                             @PathVariable("carrinhoId") UUID carrinhoId) {
-        Carrinho carrinhoFiltrado = serviceCarrinho.findProdById(carrinhoId);
+        Carrinho carrinhoFiltrado = serviceCarrinho.findCarrinhoById(carrinhoId);
         Produto produtoAchado = null;
         for (Produto prod : carrinhoFiltrado.getProdutos()) {
             if (prod.getId().equals(prodId)) {
@@ -56,7 +56,7 @@ public class ProdutoController {
     }
     @GetMapping("/carrinhos/{carrinhoId}/prods")
     public List<ProdutoDto> getProdByIdInCarrinho(@PathVariable("carrinhoId") UUID carrinhoId) {
-        Carrinho carrinhoFiltrado = serviceCarrinho.findProdById(carrinhoId);
+        Carrinho carrinhoFiltrado = serviceCarrinho.findCarrinhoById(carrinhoId);
         List<ProdutoDto> produtosAchadosDto = new ArrayList<>();
         for(Produto prod : carrinhoFiltrado.getProdutos()){
             produtosAchadosDto.add(this.convertToDto(prod));

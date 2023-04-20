@@ -18,14 +18,14 @@ export class SearchProdutoComponent {
     this.dataSource = new CustomStore({
       key: 'id',
       load: (loadOptions: any) => {
-        console.log(loadOptions);
+        /* console.log(loadOptions); */
         return lastValueFrom(service.getProdutos()).catch((error) => {
           throw 'Data Loading Error';
         });
       },
 
       update: (key, values) => {
-        console.log(key, values);
+        /* console.log(key, values); */
         return lastValueFrom(service.updateProduto(key, values));
       },
 
@@ -34,12 +34,14 @@ export class SearchProdutoComponent {
       },
 */
       remove: (key) => {
-        console.log(key);
-        return lastValueFrom(service.deleteProduto(key));;
+        /* console.log(key); */
+        return lastValueFrom(service.deleteProduto(key));
       },
     });
   }
-
+  updated = () => {
+    console.log('updated');
+  };
   redirectCreate = () => {
     this.router.navigateByUrl('/new-produto');
   };

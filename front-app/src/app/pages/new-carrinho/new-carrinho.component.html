@@ -20,12 +20,11 @@
     <div class="dx-field">
       <div class="dx-field-label">Produtos</div>
       <div class="dx-field-value">
-        <dx-tag-box #targetDataGrid
+        <dx-tag-box #targetTagBox
           valueExpr="id"
           [searchEnabled]="true"
           [dataSource]="produtos"
           label="Selecione"
-          (onSelectionChanged)="onValueChanged($event)"
           displayExpr="descricao"
           [showSelectionControls]="true"
           applyValueMode="useButtons"

@@ -14,16 +14,17 @@ import { DxDataGridComponent, DxTagBoxComponent } from 'devextreme-angular';
   styleUrls: ['./new-carrinho.component.scss'],
 })
 export class NewCarrinhoComponent implements OnInit {
-  @ViewChild('targetDataGrid') prodrodutosSelec: any;
+  @ViewChild('targetTagBox') dataTagBox: any;
+  public carrinho: Carrinho = {
+    descricao: '',
+  };
+
   constructor(
     private service: CarrinhoService,
     private prodService: ProdutoService,
     private router: Router
   ) {}
 
-  public carrinho: Carrinho = {
-    descricao: '',
-  };
 
   produtos: Produto[] = [];
 
@@ -34,7 +35,7 @@ export class NewCarrinhoComponent implements OnInit {
   }
 
   initCarrinho = () => {
-    this.prodrodutosSelec = []
+    this.dataTagBox = []
     this.carrinho = {
       descricao: '',
       produtos:[]
@@ -46,8 +47,8 @@ export class NewCarrinhoComponent implements OnInit {
   };
   onFormSubmit = (event: Event) => {
     event.preventDefault();
-    console.log('itens selected' + this.prodrodutosSelec.selectedItems);
-    this.carrinho.produtos = [ ...this.prodrodutosSelec.selectedItems] ;
+    console.log('itens selected' + this.dataTagBox.selectedItems);
+    this.carrinho.produtos = [ ...this.dataTagBox.selectedItems] ;
     console.log(' carrinho' + this.carrinho);
     this.saveCarrinho();
   };
@@ -63,12 +64,12 @@ export class NewCarrinhoComponent implements OnInit {
       }
     );
   }
-  onValueChanged = (e: Event) => {
+ /*  onValueChanged = (e: Event) => {
     e.target;
-    /* const value = e.component.option('value');
-    const selectedItems = e.component.option('selectedItems'); */
+     const value = e.component.option('value');
+    const selectedItems = e.component.option('selectedItems');
   };
-
+ */
   cancelar = () => {
     this.carrinho = {
       descricao: '',

@@ -17,33 +17,33 @@ public class CarrinhoService {
         this.repo = repo;
     }
 
-    public Iterable<Carrinho> findAllProds() {
+    public Iterable<Carrinho> findAllCarrinhos() {
         return repo.findAll();
     }
 
-    public Carrinho findProdById(UUID id) {
+    public Carrinho findCarrinhoById(UUID id) {
         return findOrThrow(id);
     }
     private Carrinho findOrThrow(final UUID id) {
         return repo
                 .findById(id)
                 .orElseThrow(
-                        () -> new NotFoundException("Prod by id " + id + " was not found")
+                        () -> new NotFoundException("Carrinho by id " + id + " was not found")
                         );
     }
 
-    public void removeProdById(UUID id) {
+    public void removeCarrinhoById(UUID id) {
         repo.deleteById(id);
     }
 
-    public Carrinho addProd(
-            Carrinho produto) {
-        return repo.save(produto);
+    public Carrinho addCarrinho(
+            Carrinho carrinho) {
+        return repo.save(carrinho);
     }
 
-    public void updateProd(UUID id,
-                           Carrinho produto) {
+    public void updateCarrinho(UUID id,
+                               Carrinho carrinho) {
         findOrThrow(id);
-        repo.save(produto);
+        repo.save(carrinho);
     }
 }

@@ -1,10 +1,12 @@
 <form (submit)="onFormSubmit($event)">
   <div class="dx-fieldset">
     <div class="dx-fieldset-header">Cadastro de um Produto</div>
+
     <div class="dx-field">
       <div class="dx-field-label">Descrição</div>
       <div class="dx-field-value">
-        <dx-text-box
+        <dx-text-area
+          [height]="100"
           [(value)]="produto.descricao"
           placeholder="Descrição de Carrinho"
         >
@@ -14,44 +16,44 @@
               message="Descrição é Obrigatória"
             ></dxi-validation-rule>
           </dx-validator>
-        </dx-text-box>
+        </dx-text-area>
       </div>
     </div>
 
     <div class="dx-field">
       <div class="dx-field-label">Vr Bruto</div>
       <dx-number-box
+        format="R$ #,##0.##"
         [(value)]="produto.vrBruto"
-        (change)='onChangeCalc()'
-        placeholder="Descrição de Carrinho"
-        >R$
+        (change)="onChangeCalc()"
+        placeholder="Vr Bruto"
+      >
       </dx-number-box>
-      <div class="dx-field-value"></div>
     </div>
 
     <div class="dx-field">
       <div class="dx-field-label">Vr Desc</div>
       <dx-number-box
+        format="R$ #,##0.##"
         [(value)]="produto.vrDesc"
-        (change)='onChangeCalc()'
-        placeholder="Descrição de Carrinho"
-        >R$
+        (change)="onChangeCalc()"
+        placeholder="Vr Desc"
+      >
       </dx-number-box>
-      <div class="dx-field-value"></div>
     </div>
 
     <div class="dx-field">
-      <div class="dx-field-label">Vr Líq</div>
+      <div class="dx-field-label">Vr. Líq</div>
       <dx-number-box
+        format="R$ #,##0.##"
         [disabled]="true"
         [(value)]="produto.vrLiq"
-        placeholder="Descrição de Carrinho"
-        >R$
+        placeholder="Vr Líq"
+      >
       </dx-number-box>
-      <div class="dx-field-value"></div>
     </div>
-
   </div>
+
   <div class="dx-fieldset">
     <dx-button
       id="button"

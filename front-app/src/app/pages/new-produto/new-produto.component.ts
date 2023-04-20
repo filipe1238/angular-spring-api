@@ -25,30 +25,28 @@ export class NewProdutoComponent implements OnInit {
     };
   };
   constructor(private service: ProdutoService, private router: Router) {}
-
   ngOnInit(): void {
     this.initProd();
   }
-  ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
-  }
+
+  //butons
   cancelar = () => {
     this.initProd();
   };
-
-  onChangeCalc = () => {
-    if (this.produto.vrDesc > this.produto.vrBruto) {
-      this.produto.vrDesc = this.produto.vrBruto;
-    }
-    this.produto.vrLiq = this.produto.vrBruto - this.produto.vrDesc;
-  };
-
   voltar = () => {
     this.router.navigateByUrl('/search-produto');
   };
   onFormSubmit = (event: Event) => {
     event.preventDefault();
     this.saveProduto();
+  };
+
+
+  onChangeCalc = () => {
+    if (this.produto.vrDesc > this.produto.vrBruto) {
+      this.produto.vrDesc = this.produto.vrBruto;
+    }
+    this.produto.vrLiq = this.produto.vrBruto - this.produto.vrDesc;
   };
 
   public saveProduto(): void {

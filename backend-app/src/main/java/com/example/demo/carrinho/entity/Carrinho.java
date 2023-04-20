@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 //@RedisHash("Produto")
 public class Carrinho extends ParentEntity {
 
-    //relacao unidirecional sem cascade de delete e de persist
+    //relacao sem cascade de delete e de persist
     private String descricao;
     @JsonIgnoreProperties("carrinhoAtual")
     @ManyToMany(cascade

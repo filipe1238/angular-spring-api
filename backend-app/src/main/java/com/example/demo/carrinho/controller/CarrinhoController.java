@@ -3,7 +3,6 @@ package com.example.demo.carrinho.controller;
 import com.example.demo.carrinho.dto.CarrinhoDto;
 import com.example.demo.carrinho.entity.Carrinho;
 import com.example.demo.carrinho.service.CarrinhoService;
-import com.example.demo.produto.entity.Produto;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
@@ -38,19 +37,19 @@ public class CarrinhoController {
     }
 
     @GetMapping("/{id}")
-    public CarrinhoDto getProdById(@PathVariable("id") UUID id) {
-        return convertToDto(service.findProdById(id));
+    public CarrinhoDto getCarrinhoById(@PathVariable("id") UUID id) {
+        return convertToDto(service.findCarrinhoById(id));
     }
 
     @PostMapping
-    public CarrinhoDto postProd(@Valid @RequestBody CarrinhoDto produtoDto) {
+    public CarrinhoDto postCarrinho(@Valid @RequestBody CarrinhoDto produtoDto) {
         var entity = convertToEntity(produtoDto);
-        var prod = service.addProd(entity);
+        var prod = service.addCarrinho(entity);
         return convertToDto(prod);
     }
 
     @PutMapping("/{id}")
-    public void putProd(
+    public void putCarrinho(
             @PathVariable("id") UUID id,
             @Valid @RequestBody CarrinhoDto carrinhoDto
     ) throws JsonMappingException {
@@ -59,24 +58,24 @@ public class CarrinhoController {
                 HttpStatus.BAD_REQUEST,
                 "id does not match."
         );
-        Carrinho carrPersist = service.findProdById(id);
+        Carrinho carrPersist = service.findCarrinhoById(id);
         Carrinho produto = objectMapper.updateValue(carrPersist, carrinhoDto);
 //        var prod = convertToEntity(produtoDto);
-        service.updateProd(id, produto);
+        service.updateCarrinho(id, produto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProdById(@PathVariable("id") UUID id) {
-        service.removeProdById(id);
+    public void deleteCarrinhoById(@PathVariable("id") UUID id) {
+        service.removeCarrinhoById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
-    public List<CarrinhoDto> getProd(Pageable pageable) {
+    public List<CarrinhoDto> getCarrinho(Pageable pageable) {
         int toSkip = pageable.getPageSize() *
                 pageable.getPageNumber();
         var prodList = StreamSupport
-                .stream(service.findAllProds().spliterator(), false)
+                .stream(service.findAllCarrinhos().spliterator(), false)
                 .skip(toSkip).limit(pageable.getPageSize())
                 .collect(Collectors.toList());
         return prodList
