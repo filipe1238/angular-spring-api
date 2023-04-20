@@ -135,7 +135,6 @@ public class ProdutoController {
         );
         Produto prod = service.findProdById(id);
         Produto produto = objectMapper.updateValue(prod, produtoDto);
-//        var prod = convertToEntity(produtoDto);
         service.updateProd(produto);
     }
 //Delete Mapps
