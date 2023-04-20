@@ -4,7 +4,7 @@ export const navigation = [
     path: '/home',
     icon: 'home'
   },
-  {
+ /*  {
     text: 'Examples',
     icon: 'folder',
     items: [
@@ -17,7 +17,7 @@ export const navigation = [
         path: '/tasks'
       }
     ]
-  },
+  }, */
   {
     text: 'Crud-app',
     icon: 'folder',
