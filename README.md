@@ -1,4 +1,5 @@
-# book-contents
+# Spring boot e angular, simples aplicações de crud e autenticação
+ Usuário inicial: admin@admin.com | senha: admin
  
 Versões:
 * Node: 14.20 
