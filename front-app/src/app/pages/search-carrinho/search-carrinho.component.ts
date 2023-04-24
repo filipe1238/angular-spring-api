@@ -41,13 +41,16 @@ export class SearchCarrinhoComponent {
         return values;
       },
 */
+
       remove: (key) => {
         console.log(key);
         return lastValueFrom(service.deleteCarrinho(key));
       },
     });
   }
-
+  /* onRowRemoving(e: any) {
+    e.cancel = !confirm('Deletar ?');
+  } */
   redirectCreate = () => {
     this.router.navigateByUrl('/new-carrinho');
   };

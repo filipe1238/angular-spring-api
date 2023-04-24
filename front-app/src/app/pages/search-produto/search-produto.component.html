@@ -18,11 +18,15 @@
     [allowDeleting]="true"
   >
     <dxo-texts
-    confirmDeleteMessage="Você quer Deletar este Item ?"
-    >
-    </dxo-texts>
+      confirmDeleteMessage="Você quer Deletar este Item ?"
+      confirmDeleteTitle="Remover"
+      deleteRow="Deletar"
+      editRow="Editar"
+      cancelRowChanges="Cancelar"
+      saveRowChanges="Editar"
+    ></dxo-texts>
   </dxo-editing>
-  <dxi-column caption="ID" dataField="id"> </dxi-column>
+  <dxi-column caption="ID" dataField="id" editCellTemplate="dxDisabled"> </dxi-column>
   <dxi-column caption="Descrição" dataField="descricao">
     <dxi-validation-rule type="required"></dxi-validation-rule>
   </dxi-column>
@@ -49,7 +53,14 @@
     format="R$ #,##0.##"
     dataField="vrLiq"
   ></dxi-column>
-
+  <div *dxTemplate="let cellInfo of 'dxDisabled'">
+    <dx-text-box
+    [disabled]="true"
+    [value]="cellInfo.value"
+    [hoverStateEnabled]="true"
+    >
+    </dx-text-box>
+  </div>
   <div *dxTemplate="let cellInfo of 'dxNumberBox'">
     <dx-number-box
       [value]="cellInfo.value"

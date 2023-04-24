@@ -10,18 +10,25 @@
   >
   </dx-button>
 </div>
-<dx-data-grid
-  class="dx-card wide-card"
-  [dataSource]="dataSource"
->
+<dx-data-grid class="dx-card wide-card" [dataSource]="dataSource">
   <dxo-editing
     mode="form"
+    [confirmDelete]="true"
     [allowUpdating]="true"
     [allowAdding]="false"
     [allowDeleting]="true"
   >
+    <dxo-texts
+      confirmDeleteMessage="Você quer Deletar este Item ?"
+      confirmDeleteTitle="Remover"
+      deleteRow="Deletar"
+      editRow="Editar"
+      cancelRowChanges="Cancelar"
+      saveRowChanges="Editar"
+    ></dxo-texts>
   </dxo-editing>
-  <dxi-column caption="ID" dataField="id" [hidingPriority]="1"> </dxi-column>
+  <dxi-column editCellTemplate="dxDisabled" caption="ID" dataField="id" [hidingPriority]="1">
+  </dxi-column>
   <dxi-column caption="Descrição" dataField="descricao" [hidingPriority]="2">
   </dxi-column>
   <dxi-column
@@ -40,6 +47,14 @@
     ></dxo-lookup>
   </dxi-column>
   <!--  <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+  <div *dxTemplate="let cellInfo of 'dxDisabled'">
+    <dx-text-box
+    [disabled]="true"
+    [value]="cellInfo.value"
+    [hoverStateEnabled]="true"
+    >
+    </dx-text-box>
+  </div>
   <div *dxTemplate="let cellInfo of 'tagBoxEditor'">
     <dx-tag-box
       [dataSource]="produtos"
