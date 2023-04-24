@@ -6,3 +6,4 @@ Versões:
 * Angular 11.0
 * Java 20
 * Spring boot: 3.0.5
+* CORS p/ porta 4200
