@@ -16,8 +16,8 @@ const defaultUser = {
 
 @Injectable()
 export class AuthService {
-  //mudar para default, para permitir acesso
-  private _user: IUser | null = defaultUser;
+  //mudar de null para default, para permitir acesso sem logar
+  private _user: IUser | null = null;
   get loggedIn(): boolean {
     return !!this._user;
   }
